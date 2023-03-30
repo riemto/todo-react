@@ -9,22 +9,16 @@ function useTodos() {
         return await axios.get(`${API_URL}`)
             .then((res) => {
                 const responseTodos = res.data;
-                console.log("response todos:", responseTodos)
                 setTodos(responseTodos);
             })
     }
 
     useEffect(() => {
-        axios.get(`${API_URL}`)
-            .then((res) => {
-                const responseTodos = res.data;
-                console.log("response todos:", responseTodos)
-                setTodos(responseTodos);
-            })
+        fetchTodos();
     }, [])
 
     const deleteTodo = async (id) => {
-        const res = await axios.delete(`${API_URL}/${id}`);
+        await axios.delete(`${API_URL}/${id}`);
         await fetchTodos()
     }
 
